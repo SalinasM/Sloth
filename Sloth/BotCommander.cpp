@@ -42,6 +42,9 @@ void BotCommander::setValidUnits(){
 		{
 			validUnits.insert(unit);
 		}
+		else{
+			return;
+		}
 
 	}
 }

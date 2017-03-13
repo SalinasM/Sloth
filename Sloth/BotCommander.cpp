@@ -41,8 +41,7 @@ void BotCommander::setValidUnits(){
 			&& unit->getPosition().y != BWAPI::Positions::Unknown.y)
 		{
 			validUnits.insert(unit);
-		}
-		else{
+		}else{
 			return;
 		}
 

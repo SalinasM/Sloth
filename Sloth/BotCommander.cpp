@@ -3,15 +3,22 @@
 
 using namespace Sloth;
 
+//-------------------------------------
+//Basic Constructor
+//-------------------------------------
 BotCommander::BotCommander() : scoutSet(false){}
 
-BotCommander::~BotCommander(){}
-
+//-------------------------------------
+//High level controller for game flow
+//-------------------------------------
 void BotCommander::update(){
 	//call all lower level managers
 	
 }
 
+//-------------------------------------
+//Assign every unit to one of the classifying lists
+//-------------------------------------
 void BotCommander::handleUnitAssignments(){
 	//assign units to different lists
 	validUnits.clear();
@@ -26,24 +33,38 @@ void BotCommander::handleUnitAssignments(){
 
 }
 
+//-------------------------------------
+//Check every unit for validity and add it to list
+//-------------------------------------
 void BotCommander::setValidUnits(){
 
 	//run through all units and check if they're not dead or some unknown etc
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
-
+        if(isVaildUnit(unit)){ validUnits.insert(unit); }
 	}
 }
 
+//-------------------------------------
+//Check every unit for fighting ability and add it to list
+//-------------------------------------
 void BotCommander::setFightingUnits(){
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
-		
+		if(isFightingUnit(unit)){ fightingUnits.insert(unit); }
 	}
 }
 
+//-------------------------------------
+//Check every unit for scouting definition and add it to list
+//-------------------------------------
 void BotCommander::setScoutingUnits(){
-
+    for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
+        if(isScoutingUnit(unit)){ scoutingUnits.insert(unit); }
+    }
 }
 
+//-------------------------------------
+//Test a unit for validity
+//-------------------------------------
 bool BotCommander::isVaildUnit(BWAPI::Unit unit){
 	//if unit doesn't exist return false
 	if (!unit){ return false; }
@@ -60,6 +81,9 @@ bool BotCommander::isVaildUnit(BWAPI::Unit unit){
 	return false;
 }
 
+//-------------------------------------
+//Test a unit for fighting ability
+//-------------------------------------
 bool BotCommander::isFightingUnit(BWAPI::Unit unit){
 	//if unit doesn't exist
 	if (!unit){ return false; }
@@ -74,18 +98,24 @@ bool BotCommander::isFightingUnit(BWAPI::Unit unit){
 	return false;
 }
 
-//zerg scouting should only be done with overlords and a worker in special occasions
+//-------------------------------------
+//Check if unit is a valid scout
+//-------------------------------------
 bool BotCommander::isScoutingUnit(BWAPI::Unit unit){
 	//if unit doesn't exist
 	if (!unit){ return false; }
 
-	if (unit->getType() == BWAPI::UnitTypes::Zerg_Overlord){
+    //zerg scouting should only be done with overlords and, in special occasions, a worker
+    if (unit->getType() == BWAPI::UnitTypes::Zerg_Overlord){
 		return true;
 	}
 
 	return false;
 }
 
+//-------------------------------------
+//
+//-------------------------------------
 BWAPI::Unit BotCommander::getClosestWorker(BWAPI::Position position){
 
 }

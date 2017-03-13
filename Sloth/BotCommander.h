@@ -15,8 +15,7 @@ namespace Sloth{
 
 	public:
 		BotCommander();
-		~BotCommander();
-
+        
 		void update();
 
 		void handleUnitAssignments();

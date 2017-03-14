@@ -25,12 +25,15 @@ void BotCommander::handleUnitAssignments(){
 	validUnits.clear();
 	fightingUnits.clear();
 	scoutingUnits.clear();
+	workers.clear();
+	overlords.clear();
 
 	setValidUnits();
 	setFightingUnits();
 	setScoutingUnits();
 	setCargoUnits();
 	setWorkers();
+	setOverlords();
 }
 
 //-------------------------------------

@@ -14,6 +14,7 @@ BotCommander::BotCommander() : scoutSet(false){}
 void BotCommander::update(){
 	//call all lower level managers
 	handleUnitAssignments();
+    printUnitLists();
 }
 
 //-------------------------------------
@@ -80,7 +81,7 @@ void BotCommander::setWorkers(){
 }
 
 void BotCommander::printUnitLists(){
-    BWAPI::Broodwar->drawTextScreen(10, 5, "%cWorker Test", yellow);
+	BWAPI::Broodwar->drawTextScreen(50, 30, "\x04Test");
 }
 
 //-------------------------------------

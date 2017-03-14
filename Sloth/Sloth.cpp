@@ -8,6 +8,7 @@ void SlothModule::onStart(){
 	// Hello World!
 	Broodwar->sendText("I am Sloth...");
 	Broodwar->sendText("Version 0.1");
+	Broodwar->sendText("testing...");
 
 	// Print the map name.
 	// BWAPI returns std::string when retrieving a string, don't forget to add .c_str() when printing!

@@ -13,7 +13,7 @@ BotCommander::BotCommander() : scoutSet(false){}
 //-------------------------------------
 void BotCommander::update(){
 	//call all lower level managers
-	
+	handleUnitAssignments();
 }
 
 //-------------------------------------
@@ -23,14 +23,13 @@ void BotCommander::handleUnitAssignments(){
 	//assign units to different lists
 	validUnits.clear();
 	fightingUnits.clear();
-
 	scoutingUnits.clear();
 
 	setValidUnits();
-
 	setFightingUnits();
 	setScoutingUnits();
-
+	setCargoUnits();
+	setWorkers();
 }
 
 //-------------------------------------
@@ -76,7 +75,7 @@ void BotCommander::setCargoUnits(){
 //-------------------------------------
 void BotCommander::setWorkers(){
     for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
-        if(unit->getType().isWorker){ workers.insert(unit); }
+        if(unit->getType().isWorker()){ workers.insert(unit); }
     }
 }
 
@@ -107,7 +106,7 @@ bool BotCommander::isFightingUnit(BWAPI::Unit unit){
 	if (!unit){ return false; }
 
 	//if unit is a building, worker or overlord then skip
-	if (unit->getType().isWorker || unit->getType().isBuilding || unit->getType() != BWAPI::UnitTypes::Zerg_Overlord)
+	if (unit->getType().isWorker() || unit->getType().isBuilding() || unit->getType() != BWAPI::UnitTypes::Zerg_Overlord)
 	{ return false; }
 
 	if (unit->canAttack() || unit->getType() == BWAPI::UnitTypes::Zerg_Defiler)
@@ -154,13 +153,11 @@ BWAPI::Unit BotCommander::getClosestWorker(BWAPI::Position position){
     double closestDistance = 1000000;
     
     //run through all valid units and check the workers for distance
-    for (auto & unit : validUnits){
-        if(unit->getType().isWorker()){
-            double distance = unit->getDistance(position);
-            if(!closestWorker || distance < closestDistance){
-				closestWorker = unit;
-                closestDistance = distance;
-            }
+    for (auto & unit : workers){
+        double distance = unit->getDistance(position);
+        if(!closestWorker || distance < closestDistance){
+            closestWorker = unit;
+            closestDistance = distance;
         }
     }
 	return closestWorker;

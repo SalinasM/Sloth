@@ -10,6 +10,7 @@ namespace Sloth{
 		BWAPI::Unitset cargoUnits;
 		BWAPI::Unitset scoutingUnits;
         BWAPI::Unitset workers;
+        BWAPI::Unitset overlords;
 
 		bool scoutSet;
 		bool isAssigned() const;
@@ -25,6 +26,7 @@ namespace Sloth{
 		void setCargoUnits();
 		void setScoutingUnits();
         void setWorkers();
+        void setOverlords();
         void printUnitLists();
         
 		bool isVaildUnit(BWAPI::Unit unit);

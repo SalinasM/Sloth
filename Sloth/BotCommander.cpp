@@ -81,8 +81,11 @@ void BotCommander::setWorkers(){
 }
 
 void BotCommander::printUnitLists(){
-    int size = workers.size();
-	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%s Workers", size); //\x03 = yellow
+	int workerSize = 0;
+	for (auto & unit : workers){
+		workerSize++;
+	}
+	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%d Workers", workerSize); //\x03 = yellow
 }
 
 //-------------------------------------

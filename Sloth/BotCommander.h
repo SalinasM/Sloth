@@ -25,11 +25,14 @@ namespace Sloth{
 		void setCargoUnits();
 		void setScoutingUnits();
         void setWorkers();
+        void printUnitLists();
+        
 		bool isVaildUnit(BWAPI::Unit unit);
 		bool isFightingUnit(BWAPI::Unit unit);
 		bool isCargoUnit(BWAPI::Unit unit);
 		bool isScoutingUnit(BWAPI::Unit unit);
 
 		BWAPI::Unit getClosestWorker(BWAPI::Position position);
+        
 	};
 }

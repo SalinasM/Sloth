@@ -79,6 +79,10 @@ void BotCommander::setWorkers(){
     }
 }
 
+void BotCommander::printUnitLists(){
+    BWAPI::Broodwar->drawTextScreen(10, 5, "%cWorker Test", yellow);
+}
+
 //-------------------------------------
 //Test a unit for validity
 //-------------------------------------
@@ -162,3 +166,5 @@ BWAPI::Unit BotCommander::getClosestWorker(BWAPI::Position position){
     }
 	return closestWorker;
 }
+
+

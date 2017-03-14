@@ -98,7 +98,7 @@ void BotCommander::printUnitLists(){
 	for (auto & unit : workers){
 		workerCount++;
 	}
-	for (auto & unit : cargoUnits){
+	for (auto & unit : overlords){
 		overlordCount++;
 	}
 	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%d Workers", workerCount); //\x03 = yellow

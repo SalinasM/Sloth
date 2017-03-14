@@ -81,7 +81,7 @@ void BotCommander::setWorkers(){
 }
 
 void BotCommander::printUnitLists(){
-	BWAPI::Broodwar->drawTextScreen(50, 30, "\x04Test");
+	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03Test");
 }
 
 //-------------------------------------

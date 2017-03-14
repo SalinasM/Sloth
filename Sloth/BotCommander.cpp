@@ -83,7 +83,7 @@ void BotCommander::setWorkers(){
 //-------------------------------------
 //Check every unit and add the workers to list
 //-------------------------------------
-void BotCommander::setWorkers(){
+void BotCommander::setOverlords(){
     for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
         if(unit->getType() == BWAPI::UnitTypes::Zerg_Overlord){ overlords.insert(unit); }
     }

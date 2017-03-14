@@ -113,12 +113,12 @@ void BotCommander::printUnitLists(){
     for (auto & unit : cargoUnits)      { cargoCount++; }
     
     //display each count \x** is for color
-    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Valid Units", validCount);
-    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Fighting Units", fightingCount);
+    BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%d Valid Units", validCount);
+    BWAPI::Broodwar->drawTextScreen(50, 42, "\x03%d Fighting Units", fightingCount);
     BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Scouting Units", scoutCount);
-	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%d Workers", workerCount);
-    BWAPI::Broodwar->drawTextScreen(50, 42, "\x03%d Overlords", overlordCount);
-    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Cargo Units", cargoCount);
+	BWAPI::Broodwar->drawTextScreen(50, 66, "\x03%d Workers", workerCount);
+    BWAPI::Broodwar->drawTextScreen(50, 78, "\x03%d Overlords", overlordCount);
+    BWAPI::Broodwar->drawTextScreen(50, 90, "\x03%d Cargo Units", cargoCount);
 }
 
 //-------------------------------------

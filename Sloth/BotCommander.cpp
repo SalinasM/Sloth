@@ -96,16 +96,29 @@ void BotCommander::setOverlords(){
 //print out unit count in all lists
 //-------------------------------------
 void BotCommander::printUnitLists(){
-	int workerCount = 0;
+	//count for each vector list created
+    int validCount = 0;
+    int fightingCount = 0;
+    int cargoCount = 0;
+    int scoutCount = 0;
+    int workerCount = 0;
 	int overlordCount = 0;
-	for (auto & unit : workers){
-		workerCount++;
-	}
-	for (auto & unit : overlords){
-		overlordCount++;
-	}
-	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%d Workers", workerCount); //\x03 = yellow
-	BWAPI::Broodwar->drawTextScreen(50, 42, "\x03%d Overlords", overlordCount); //\x03 = yellow
+    
+    //count each vector
+    for (auto & unit : validUnits)      { validCount++; }
+    for (auto & unit : fightingUnits)   { fightingCount++; }
+    for (auto & unit : scoutingUnits)   { scoutCount++; }
+    for (auto & unit : workers)         { workerCount++; }
+    for (auto & unit : overlords)       { overlordCount++; }
+    for (auto & unit : cargoUnits)      { cargoCount++; }
+    
+    //display each count \x** is for color
+    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Valid Units", validCount);
+    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Fighting Units", fightingCount);
+    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Scouting Units", scoutCount);
+	BWAPI::Broodwar->drawTextScreen(50, 30, "\x03%d Workers", workerCount);
+    BWAPI::Broodwar->drawTextScreen(50, 42, "\x03%d Overlords", overlordCount);
+    BWAPI::Broodwar->drawTextScreen(50, 54, "\x03%d Cargo Units", cargoCount);
 }
 
 //-------------------------------------

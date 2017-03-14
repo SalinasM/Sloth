@@ -17,7 +17,7 @@ namespace Sloth{
 
 	public:
 		BotCommander();
-        
+
 		void update();
 
 		void handleUnitAssignments();
@@ -28,7 +28,7 @@ namespace Sloth{
         void setWorkers();
         void setOverlords();
         void printUnitLists();
-        
+
 		bool isVaildUnit(BWAPI::Unit unit);
 		bool isFightingUnit(BWAPI::Unit unit);
 		bool isCargoUnit(BWAPI::Unit unit);

@@ -12,9 +12,6 @@ namespace Sloth{
         BWAPI::Unitset workers;
         BWAPI::Unitset overlords;
 
-		bool scoutSet;
-		bool isAssigned() const;
-
 	public:
 		BotCommander();
 

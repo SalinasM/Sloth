@@ -1,25 +1,25 @@
-#include "Common.h"
+1#include "Common.h"
 #include "BotCommander.h"
 
 using namespace Sloth;
 
-//-------------------------------------
-//Basic Constructor
-//-------------------------------------
+//==========================================================================================
+//Basic constructor for BotCommander
+//==========================================================================================
 BotCommander::BotCommander() : scoutSet(false){}
 
-//-------------------------------------
+//==========================================================================================
 //High level controller for game flow
-//-------------------------------------
+//==========================================================================================
 void BotCommander::update(){
 	//call all lower level managers
 	handleUnitAssignments();
     printUnitLists();
 }
 
-//-------------------------------------
+//==========================================================================================
 //Assign every unit to one of the classifying lists
-//-------------------------------------
+//==========================================================================================
 void BotCommander::handleUnitAssignments(){
 	//assign units to different lists
 	validUnits.clear();
@@ -36,9 +36,9 @@ void BotCommander::handleUnitAssignments(){
 	setOverlords();
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check every unit for validity and add it to list
-//-------------------------------------
+//==========================================================================================
 void BotCommander::setValidUnits(){
 
 	//run through all units and check if they're not dead or some unknown etc
@@ -47,54 +47,54 @@ void BotCommander::setValidUnits(){
 	}
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check every unit for fighting ability and add it to list
-//-------------------------------------
+//==========================================================================================
 void BotCommander::setFightingUnits(){
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
 		if(isFightingUnit(unit)){ fightingUnits.insert(unit); }
 	}
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check every unit for scouting definition and add it to list
-//-------------------------------------
+//==========================================================================================
 void BotCommander::setScoutingUnits(){
     for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
         if(isScoutingUnit(unit)){ scoutingUnits.insert(unit); }
     }
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check every unit for a cargo unit definition and add it to list
-//-------------------------------------
+//==========================================================================================
 void BotCommander::setCargoUnits(){
     for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
         if(isCargoUnit(unit)){ scoutingUnits.insert(unit); }
     }
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check every unit and add the workers to list
-//-------------------------------------
+//==========================================================================================
 void BotCommander::setWorkers(){
     for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
         if(unit->getType().isWorker()){ workers.insert(unit); }
     }
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check every unit and add the workers to list
-//-------------------------------------
+//==========================================================================================
 void BotCommander::setOverlords(){
     for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
         if(unit->getType() == BWAPI::UnitTypes::Zerg_Overlord){ overlords.insert(unit); }
     }
 }
 
-//-------------------------------------
+//==========================================================================================
 //print out unit count in all lists
-//-------------------------------------
+//==========================================================================================
 void BotCommander::printUnitLists(){
 	//count for each vector list created
     int validCount = 0;
@@ -121,9 +121,9 @@ void BotCommander::printUnitLists(){
     BWAPI::Broodwar->drawTextScreen(50, 90, "\x03%d Cargo Units", cargoCount);
 }
 
-//-------------------------------------
+//==========================================================================================
 //Test a unit for validity
-//-------------------------------------
+//==========================================================================================
 bool BotCommander::isVaildUnit(BWAPI::Unit unit){
 	//if unit doesn't exist return false
 	if (!unit){ return false; }
@@ -140,9 +140,9 @@ bool BotCommander::isVaildUnit(BWAPI::Unit unit){
 	return false;
 }
 
-//-------------------------------------
+//==========================================================================================
 //Test a unit for fighting ability
-//-------------------------------------
+//==========================================================================================
 bool BotCommander::isFightingUnit(BWAPI::Unit unit){
 	//if unit doesn't exist
 	if (!unit){ return false; }
@@ -157,9 +157,9 @@ bool BotCommander::isFightingUnit(BWAPI::Unit unit){
 	return false;
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check if unit is a valid scout
-//-------------------------------------
+//==========================================================================================
 bool BotCommander::isScoutingUnit(BWAPI::Unit unit){
 	//if unit doesn't exist
 	if (!unit){ return false; }
@@ -172,9 +172,9 @@ bool BotCommander::isScoutingUnit(BWAPI::Unit unit){
 	return false;
 }
 
-//-------------------------------------
+//==========================================================================================
 //Check if unit is a valid cargo unit
-//-------------------------------------
+//==========================================================================================
 bool BotCommander::isCargoUnit(BWAPI::Unit unit){
     //if unit doesn't exist
     if (!unit){ return false; }
@@ -185,24 +185,6 @@ bool BotCommander::isCargoUnit(BWAPI::Unit unit){
     }
     
     return false;
-}
-
-//-------------------------------------
-//Return the closest worker to target position
-//-------------------------------------
-BWAPI::Unit BotCommander::getClosestWorker(BWAPI::Position position){
-    BWAPI::Unit closestWorker = nullptr;
-    double closestDistance = 1000000;
-    
-    //run through all valid units and check the workers for distance
-    for (auto & unit : workers){
-        double distance = unit->getDistance(position);
-        if(!closestWorker || distance < closestDistance){
-            closestWorker = unit;
-            closestDistance = distance;
-        }
-    }
-	return closestWorker;
 }
 
 

@@ -15,6 +15,8 @@ void BotCommander::update(){
 	//call all lower level managers
 	handleUnitAssignments();
     printUnitLists();
+    
+    workerManager();
 }
 
 //==========================================================================================

@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "BotCommander.h"
 
 //==========================================================================================
 // Author: Marcelo Salinas
@@ -23,6 +24,7 @@ namespace Sloth{
     public:
         
         WorkerManager();
+        void update();
         void sendToMine();
         BWAPI::Unit getClosestWorker(BWAPI::Position position);
         

@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "WorkerManager.h"
 
 //==========================================================================================
 // Author: Marcelo Salinas
@@ -22,6 +23,8 @@ namespace Sloth{
 		BWAPI::Unitset scoutingUnits;
         BWAPI::Unitset workers;
         BWAPI::Unitset overlords;
+        
+        WorkerManager workerManager;
 
 	public:
 		BotCommander();

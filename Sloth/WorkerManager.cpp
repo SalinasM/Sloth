@@ -24,6 +24,25 @@ WorkerManager::WorkerManager(){
 void WorkerManager::sendToMine(){
     getWorkers();
     
+    // Look through all workers and if any are idle check if it is carrying a resource to
+    //return otherwise find a mineral patch or refinery to harvest.
+    for (auto & unit : workers){
+        if(unit->isIdle()){
+            if (u->isCarryingGas() || u->isCarryingMinerals())
+            {
+                u->returnCargo();
+            }
+            else if (!u->getPowerUp()) {
+                // Harvest from the nearest mineral patch or gas refinery
+                if (!u->gather( u->getClosestUnit( IsMineralField || IsRefinery )))
+                {
+                    // If the call fails, then print the last error message
+                    Broodwar << Broodwar->getLastError() << std::endl;
+                }
+                
+            }
+        }
+    }
 }
 
 //==========================================================================================

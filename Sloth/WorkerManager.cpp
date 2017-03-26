@@ -62,5 +62,3 @@ BWAPI::Unit WorkerManager::getClosestWorker(BWAPI::Position position){
     }
     return closestWorker;
 }
-
-//This is a test comment about git 
